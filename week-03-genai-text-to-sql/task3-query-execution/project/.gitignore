@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# virtual environments
+venv/
+.env/
+.venv/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# keep this safe (DO NOT IGNORE)
+!.env.example
+
+# Logs
+logs/
+*.log
+
+# Testing / tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
+
+# Docker (optional ignores)
+docker-compose.override.yml
+
+# Database / runtime files (only if generated locally)
+*.db
+*.sqlite3
+
+# backups
+*.bak

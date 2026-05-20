@@ -1,0 +1,42 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# keep template if needed
+!.env.template
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Jupyter (if used later)
+.ipynb_checkpoints/
+
+# use only if you want to KEEP dataset files
+!sql_questions_only.csv
+
+# Python packaging
+*.egg-info/
+dist/
+build/

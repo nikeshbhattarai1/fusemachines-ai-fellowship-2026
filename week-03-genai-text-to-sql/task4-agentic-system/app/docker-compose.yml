@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: classicmodels
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_secure_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/seed.sql:/docker-entrypoint-initdb.d/seed.sql
+    networks:
+      - agent_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d classicmodels"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  streamlit_app:
+    build: .
+    container_name: streamlit_app
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - BASE_URL=${BASE_URL}
+      - MODEL_NAME=${MODEL_NAME}
+      - DATABASE_URL=postgresql://postgres:postgres_secure_pass@postgres_db:5432/classicmodels
+      - DB_HOST=postgres_db
+      - DB_PORT=5432
+      - DB_NAME=classicmodels
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres_secure_pass
+    networks:
+      - agent_network
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    restart: always
+
+networks:
+  agent_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
