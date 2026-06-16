@@ -1,0 +1,30 @@
+# Secrets
+.env
+
+# Logs
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Database files
+*.sqlite
+
+# Docker volumes
+*.pid
