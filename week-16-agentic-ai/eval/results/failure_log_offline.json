@@ -1,0 +1,137 @@
+[
+  {
+    "case_id": "control_fabricated_citation",
+    "category": "control",
+    "mode": "agent",
+    "control": true,
+    "fault": null,
+    "status": "insufficient_evidence",
+    "stop_reason": "finished",
+    "iterations": 5,
+    "iter_range": [
+      2,
+      5
+    ],
+    "in_range": true,
+    "completed": false,
+    "fail_reasons": [
+      "status 'insufficient_evidence' not in ['verified']"
+    ],
+    "tool_selection_ok": true,
+    "selection_reasons": [],
+    "calls_total": 5,
+    "calls_valid": 5,
+    "duplicate_calls": 0,
+    "grounding_rejections": 3,
+    "repaired": true,
+    "degraded": false,
+    "confidence": 0.6,
+    "cited_sources": 0,
+    "tokens_in": 10598,
+    "tokens_out": 275,
+    "tokens_total": 10873,
+    "tokens_estimated": true,
+    "latency_ms": 1,
+    "provider": "scripted",
+    "failure_class": "cascading_soft",
+    "anomalies": [
+      {
+        "step": 3,
+        "kind": "finish_rejected",
+        "detail": "unknown_evidence_id,missing_evidence"
+      },
+      {
+        "step": 4,
+        "kind": "finish_rejected",
+        "detail": "unknown_evidence_id,missing_evidence"
+      },
+      {
+        "step": 5,
+        "kind": "finish_rejected",
+        "detail": "unknown_evidence_id,missing_evidence"
+      }
+    ],
+    "path": "kb_search > facts_lookup > finish > finish > finish",
+    "answer": "The limit is 30 per minute.\n\nLimitations: Some cited evidence could not be validated; affected claims were downgraded to 'insufficient'."
+  },
+  {
+    "case_id": "control_stale_source",
+    "category": "control",
+    "mode": "agent",
+    "control": true,
+    "fault": null,
+    "status": "verified",
+    "stop_reason": "finished",
+    "iterations": 3,
+    "iter_range": [
+      2,
+      5
+    ],
+    "in_range": true,
+    "completed": false,
+    "fail_reasons": [
+      "answer missing /\\b30\\b/",
+      "answer contains forbidden /\\b60\\b/"
+    ],
+    "tool_selection_ok": true,
+    "selection_reasons": [],
+    "calls_total": 3,
+    "calls_valid": 3,
+    "duplicate_calls": 0,
+    "grounding_rejections": 0,
+    "repaired": false,
+    "degraded": false,
+    "confidence": 0.75,
+    "cited_sources": 1,
+    "tokens_in": 5138,
+    "tokens_out": 142,
+    "tokens_total": 5280,
+    "tokens_estimated": true,
+    "latency_ms": 1,
+    "provider": "scripted",
+    "failure_class": "soft",
+    "anomalies": [],
+    "path": "kb_search > kb_search > finish",
+    "answer": "The rate limit is 60 requests per minute."
+  },
+  {
+    "case_id": "control_never_finishes",
+    "category": "control",
+    "mode": "agent",
+    "control": true,
+    "fault": null,
+    "status": "budget_exhausted",
+    "stop_reason": "max_iterations",
+    "iterations": 8,
+    "iter_range": [
+      2,
+      5
+    ],
+    "in_range": false,
+    "completed": false,
+    "fail_reasons": [
+      "status 'budget_exhausted' not in ['verified']",
+      "answer missing /\\b30\\b/"
+    ],
+    "tool_selection_ok": true,
+    "selection_reasons": [],
+    "calls_total": 8,
+    "calls_valid": 8,
+    "duplicate_calls": 0,
+    "grounding_rejections": 0,
+    "repaired": false,
+    "degraded": false,
+    "confidence": 0.0,
+    "cited_sources": 0,
+    "tokens_in": 19551,
+    "tokens_out": 120,
+    "tokens_total": 19671,
+    "tokens_estimated": true,
+    "latency_ms": 3,
+    "provider": "scripted",
+    "failure_class": "hard",
+    "anomalies": [],
+    "path": "kb_search > kb_search > kb_search > kb_search > kb_search > kb_search > kb_search > kb_search",
+    "answer": "I could not finish verifying this (iteration budget (8) exhausted before a verified answer). No conclusion is asserted. Evidence gathered so far: release_notes.md: \"# Release Notes ## v1.1 (2026-08-20) Groq was added as a third hosted provider; the fallba\"; vllm_deployment.md: \"ns and a GPU memory utilization of 0.90. ## Requirements An NVIDIA GPU with the nvidia-con\"; vllm_deployment.md: \"# Local"
+  }
+]

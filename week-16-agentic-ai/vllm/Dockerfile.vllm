@@ -1,0 +1,17 @@
+# Local open-source model serving via vLLM, exposed as an OpenAI-compatible
+# API. Requires an NVIDIA GPU + nvidia-container-toolkit on the host.
+#
+# Swap the model on the CMD line for any vLLM-supported checkpoint, e.g.
+# mistralai/Mistral-7B-Instruct-v0.3. Gated models (like Llama 3) need
+# HUGGING_FACE_HUB_TOKEN set in the environment.
+FROM vllm/vllm-openai:latest
+
+EXPOSE 8001
+
+ENTRYPOINT ["python3", "-m", "vllm.entrypoints.openai.api_server"]
+CMD ["--model", "meta-llama/Meta-Llama-3-8B-Instruct", \
+     "--host", "0.0.0.0", \
+     "--port", "8001", \
+     "--dtype", "auto", \
+     "--max-model-len", "8192", \
+     "--gpu-memory-utilization", "0.90"]

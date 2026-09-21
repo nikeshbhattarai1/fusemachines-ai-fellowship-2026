@@ -1,0 +1,10 @@
+{
+  "_note": "Synthetic test metadata for the W16 verification corpus (dates/authority are part of the test fixture).",
+  "assistant_faq.md":        {"kind": "document",   "last_updated": "2025-10-01", "authority": "low",    "description": "Internal FAQ written before Groq support; describes the fallback chain only as an example."},
+  "ops_runbook_v0_9.md":     {"kind": "document",   "last_updated": "2025-11-03", "authority": "medium", "description": "Legacy operations runbook for v0.9."},
+  "release_notes.md":        {"kind": "document",   "last_updated": "2026-08-20", "authority": "high",   "description": "Release notes; records what changed between versions."},
+  "architecture_overview.md":{"kind": "document",   "last_updated": "2026-08-25", "authority": "high",   "description": "Current architecture and default settings."},
+  "security_policy.md":      {"kind": "document",   "last_updated": "2026-05-02", "authority": "high",   "description": "Security and data handling rules."},
+  "vllm_deployment.md":      {"kind": "document",   "last_updated": "2026-07-10", "authority": "high",   "description": "Local vLLM deployment settings."},
+  "facts_registry":          {"kind": "structured", "last_updated": "2026-09-01", "authority": "high",   "description": "Machine-readable current configuration values (mirrors app/config.py defaults)."}
+}

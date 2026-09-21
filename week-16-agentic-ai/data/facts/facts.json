@@ -1,0 +1,73 @@
+{
+  "_meta": {"name": "facts_registry", "last_updated": "2026-09-01"},
+  "entities": {
+    "rate_limiter": {
+      "aliases": ["rate limit", "rate limiting", "throttling", "requests per minute", "request limit"],
+      "attributes": {
+        "requests_per_minute": {"value": 30, "unit": "requests/minute per client", "last_updated": "2026-08-20", "source_of_truth": "RATE_LIMIT_PER_MINUTE in app/config.py"},
+        "algorithm": {"value": "token bucket", "unit": "", "last_updated": "2026-08-20", "source_of_truth": "app/reliability/rate_limiter.py"}
+      }
+    },
+    "response_cache": {
+      "aliases": ["cache", "caching", "cache ttl", "chat cache"],
+      "attributes": {
+        "ttl_seconds": {"value": 3600, "unit": "seconds", "last_updated": "2026-08-20", "source_of_truth": "CACHE_TTL_SECONDS in app/config.py"},
+        "backend": {"value": "Redis with in-memory fallback", "unit": "", "last_updated": "2026-08-20", "source_of_truth": "app/reliability/cache.py"}
+      }
+    },
+    "provider_retry": {
+      "aliases": ["retry", "retries", "retry policy", "re-attempt", "attempts"],
+      "attributes": {
+        "max_attempts": {"value": 3, "unit": "attempts", "last_updated": "2026-08-20", "source_of_truth": "RETRY_MAX_ATTEMPTS in app/config.py"},
+        "backoff": {"value": "exponential with jitter", "unit": "", "last_updated": "2026-08-20", "source_of_truth": "app/reliability/retry.py"}
+      }
+    },
+    "circuit_breaker": {
+      "aliases": ["breaker", "cooldown", "circuit breaker cooldown"],
+      "attributes": {
+        "cooldown_seconds": {"value": 60, "unit": "seconds", "last_updated": "2026-08-20", "source_of_truth": "CIRCUIT_BREAKER_COOLDOWN_SECONDS in app/config.py"}
+      }
+    },
+    "document_chunking": {
+      "aliases": ["chunking", "chunk size", "ingestion", "chunk overlap"],
+      "attributes": {
+        "chunk_size_chars": {"value": 800, "unit": "characters", "last_updated": "2026-08-20", "source_of_truth": "CHUNK_SIZE in app/config.py"},
+        "chunk_overlap_chars": {"value": 120, "unit": "characters", "last_updated": "2026-08-20", "source_of_truth": "CHUNK_OVERLAP in app/config.py"}
+      }
+    },
+    "retrieval": {
+      "aliases": ["top k", "retrieval", "embedding", "embeddings"],
+      "attributes": {
+        "top_k": {"value": 4, "unit": "chunks", "last_updated": "2026-08-20", "source_of_truth": "RETRIEVAL_K in app/config.py"},
+        "embedding_model": {"value": "sentence-transformers/all-MiniLM-L6-v2", "unit": "", "last_updated": "2026-08-20", "source_of_truth": "EMBEDDING_MODEL in app/config.py"}
+      }
+    },
+    "generation": {
+      "aliases": ["temperature", "sampling", "top p", "top_p", "generation parameters"],
+      "attributes": {
+        "default_temperature": {"value": 0.4, "unit": "", "last_updated": "2026-08-20", "source_of_truth": "DEFAULT_TEMPERATURE in app/config.py"},
+        "default_top_p": {"value": 0.9, "unit": "", "last_updated": "2026-08-20", "source_of_truth": "DEFAULT_TOP_P in app/config.py"},
+        "max_output_tokens": {"value": 1024, "unit": "tokens", "last_updated": "2026-08-20", "source_of_truth": "MAX_OUTPUT_TOKENS in app/config.py"}
+      }
+    },
+    "provider_fallback": {
+      "aliases": ["providers", "fallback", "fallback order", "provider order", "llm providers"],
+      "attributes": {
+        "order": {"value": "anthropic, openai, groq, local", "unit": "", "last_updated": "2026-08-20", "source_of_truth": "PROVIDER_PRIORITY in app/config.py"}
+      }
+    },
+    "chat_tool_loop": {
+      "aliases": ["tool loop", "chat loop", "tool iterations"],
+      "attributes": {
+        "max_tool_iterations": {"value": 5, "unit": "iterations", "last_updated": "2026-08-20", "source_of_truth": "MAX_TOOL_ITERATIONS in app/config.py"}
+      }
+    },
+    "verify_agent": {
+      "aliases": ["verification agent", "agent loop", "agent", "verify"],
+      "attributes": {
+        "max_iterations": {"value": 8, "unit": "iterations", "last_updated": "2026-09-01", "source_of_truth": "AGENT_MAX_ITERATIONS in app/config.py"},
+        "token_budget": {"value": 60000, "unit": "tokens", "last_updated": "2026-09-01", "source_of_truth": "AGENT_TOKEN_BUDGET in app/config.py"}
+      }
+    }
+  }
+}
